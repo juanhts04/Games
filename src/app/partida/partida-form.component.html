@@ -1,0 +1,30 @@
+<div class="form-container">
+  <h2>Crear Partida</h2>
+  
+  <form (ngSubmit)="crearPartida()">
+    <div class="form-group">
+      <label for="jugador1">Jugador 1:</label>
+      <select id="jugador1" [(ngModel)]="jugador1Id" name="jugador1" required>
+        <option value="" disabled selected>Selecciona un jugador</option>
+        <option *ngFor="let u of usuarios" [value]="u.id">{{ u.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="jugador2">Jugador 2:</label>
+      <select id="jugador2" [(ngModel)]="jugador2Id" name="jugador2" required>
+        <option value="" disabled selected>Selecciona un jugador</option>
+        <option *ngFor="let u of usuarios" [value]="u.id">{{ u.nombre }}</option>
+      </select>
+      <div class="error-message" [class.show]="jugador1Id === jugador2Id && jugador1Id">
+        Por favor selecciona dos jugadores diferentes
+      </div>
+    </div>
+
+    <div class="btn-container">
+      <button type="submit" class="btn btn-primary">Iniciar Partida</button>
+      <button [routerLink]="['/registro']" class="btn btn-secondary">Registrar Jugador</button>
+    </div>
+  </form>
+</div>
+
